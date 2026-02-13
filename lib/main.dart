@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'next_page.dart';
+import 'card_page.dart';
 
 
 void main() {
@@ -10,63 +10,80 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: InputFormPage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {// import 'next_page.dart';
+class InputFormPage extends StatefulWidget {
+  @override
+  State<InputFormPage> createState() => _InputFormPageState();
+}
+
+class _InputFormPageState extends State<InputFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('첫번째 화면'),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              ElevatedButton(
-              onPressed: (){
-        Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => NextPage(
-        message: '안녕하세요',
-        )),
-        );
-        },
-            child: Text('인사하기')
-        ),
-
-      SizedBox(height: 20),
-
-      ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NextPage(
-                message: '반갑습니다',
-              )),
-            );
-          },
-          child: Text('반가워하기')
+      appBar: AppBar(
+        title: Text('명함정보입력'),
+        backgroundColor: Colors.blue,
       ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Text(
+              '명함에 들어갈 정보를 입력하세요',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
 
-      SizedBox(height: 20),
-
-      ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NextPage(
-                message: '오늘 날씨가 좋네요!',
-              )),
-            );
-          },
-          child: Text('날씨이야기')
+            TextField(
+              decoration: InputDecoration(
+                labelText: '이름',
+                hintText: '이름을 입력하세요',
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '직업',
+                hintText: '직업',
+                prefixIcon: Icon(Icons.work),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '이메일',
+                hintText: '이메일',
+                prefixIcon: Icon(Icons.email),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '전화번호',
+                hintText: '전화번호',
+                prefixIcon: Icon(Icons.phone),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CardPage()),
+                );
+              },
+              child: Text('명함만들기'),
+            ),
+          ],
+        ),
       ),
-            ],
-          ),
-    )
     );
   }
 }
